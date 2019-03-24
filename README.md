@@ -5,8 +5,8 @@ There might be a better model to use but the whole point of this is to use Linea
 The data file I will be looking at is from UCI. Here is the link for the specific data. You can read that into pandas.
 I would recommend researching anything you do not understand because it will help you learn it better and from different perspectives, but I always welcome questions.
 
+### Imports
 ```
-Imports
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
