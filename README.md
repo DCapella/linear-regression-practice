@@ -35,15 +35,15 @@ I am grabbing the dataset directly from the website and it does not come with co
 # For reference
 df.head()
 ```
-`mpg` — miles per gallon — continuous
-`cylinders` — “A cylinder is the central working part of a reciprocating engine or pump, the space in which a piston travels.” (Wiki)
-`displacement` — “Engine displacement is the swept volume of all the pistons inside the cylinders of a reciprocating engine in a single movement from top dead center (TDC) to bottom dead center (BDC).” (Wiki)
-`horsepower` — “Horsepower (hp) is a unit of measurement of power or the rate at which work is done.” (Wiki)
-`weight` — The weight of the vehicle.
-`acceleration` — “A car’s acceleration is calculated when the car is not in motion (0 mph), until the amount of time it takes to reach a velocity of 60 miles per hour.” (Glenn Elert)
-`model_year` — The year of the model.
-`origin` — To be honest I couldn’t find what it was talking about.
-`car_name` — The car’s name.
+* `mpg` — miles per gallon — continuous
+* `cylinders` — “A cylinder is the central working part of a reciprocating engine or pump, the space in which a piston travels.” (Wiki)
+* `displacement` — “Engine displacement is the swept volume of all the pistons inside the cylinders of a reciprocating engine in a single movement from top dead center (TDC) to bottom dead center (BDC).” (Wiki)
+* `horsepower` — “Horsepower (hp) is a unit of measurement of power or the rate at which work is done.” (Wiki)
+* `weight` — The weight of the vehicle.
+* `acceleration` — “A car’s acceleration is calculated when the car is not in motion (0 mph), until the amount of time it takes to reach a velocity of 60 miles per hour.” (Glenn Elert)
+* `model_year` — The year of the model.
+* `origin` — To be honest I couldn’t find what it was talking about.
+* `car_name` — The car’s name.
 ```
 # Lets check it out
 df.info()
@@ -51,7 +51,7 @@ df.info()
 We can see here that both mpg and horsepower both have null values because there are 406 entries and in those columns, it only shows 398 and 400 non-null, respectively. We will have to get rid of the rows with nulls in mpg since that is what we are trying to predict. As for horsepower, there are several things we could do but since the focus of this blog is linear regression and not handling nulls; we’ll simply use the mean or mode.
 
 ## Clean Data
-#### Horsepower
+### Horsepower
 ```
 # Take a look at distribution of horsepower to see if we want to
 # use mean or mode
@@ -65,7 +65,7 @@ Taking a look at the horsepower distribution with mean (orange) and mode (blue) 
 df['horsepower'].fillna(df['horsepower'].mean(), inplace=True)
 Filling nulls is always a two-part process for me. I first check it without inplace=True and then I set the parameter to True.
 ```
-#### MPG
+### MPG
 ```
 # Get rid of na in mpg rows since that is what we are trying
 # to predict
@@ -73,14 +73,14 @@ df.dropna(inplace=True)
 ```
 The second column to clean is mpg which is simply removing the null rows. Easy enough.
 
-#### Zeroes and Negatives
+### Zeroes and Negatives
 ```
 # Check if any are 0 or negative
 (df.iloc[:,:-1] <= 0).any()
 ```
 I always like to look through the numerical columns to see if there are any weird consistencies. In this case, not that we can see.
 
-#### Data Exploration
+### Data Exploration
 ```
 # Looking at correlation if we made car name into a dummy variable
 # does not look promising; we will not do that.
@@ -150,7 +150,7 @@ features = ['weight', 'model_year', 'origin']
 ```
 We will set the features according to the P-values.
 
-#### Model
+### Model
 The moment we have been waiting for. Nothing too complicated here; just creating our model and looking at the r2 score of our training and testing data to see how it fairs.
 ```
 # Create X and y
@@ -174,15 +174,14 @@ Our training data is less than our testing data so we know it is not overfitting
 ## Conclusion
 We have seen that out of the columns, we only need a couple to fit our model and get a pretty decent score right off the bat.
 
-
+---
 <sub><sub>
 Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
-
+<sub><sub>
 Cylinder (engine). From Wikipedia, the free encyclopedia. 15 February 2019, at 04:47 (UTC). https://en.wikipedia.org/wiki/Cylinder_(engine)
-
+<sub><sub>
 Engine displacement. From Wikipedia, the free encyclopedia. 12 February 2019, at 00:04 (UTC). https://en.wikipedia.org/wiki/Engine_displacement.
-
+<sub><sub>
 Horsepower. From Wikipedia, the free encyclopedia. 9 March 2019, at 23:50 (UTC). https://en.wikipedia.org/wiki/Horsepower.
-
+<sub><sub>
 Meredith Barricella — 2001. Student of Glenn Elert, edited by Glenn Elert. Acceleration Of A Car. https://hypertextbook.com/facts/2001/MeredithBarricella.shtml
-</sub></sub>
